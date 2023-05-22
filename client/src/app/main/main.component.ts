@@ -21,8 +21,9 @@ export class MainComponent implements OnInit {
 
     getWeather() {
         console.info(this.form.value)
-        const params: Params = { city: this.form.value['city'] }
-        this.router.navigate([ '/weather' ], { queryParams: params })
+        const query = this.form.value
+        const queryParams: Params = { city: this.form.value['city'] }
+        this.router.navigate([ '/weather', query.city ], { queryParams })
     }
 
 

@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable, map } from 'rxjs';
 import { WeatherApiResponse } from '../model';
 import { WeatherService } from '../weather.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-weather',
@@ -12,6 +13,7 @@ import { WeatherService } from '../weather.service';
 export class WeatherComponent implements OnInit {
 
     activatedRoute = inject(ActivatedRoute)
+    title = inject(Title)
     weatherService = inject(WeatherService)
     weather$!: Observable<WeatherApiResponse>
     city = ''
@@ -19,6 +21,7 @@ export class WeatherComponent implements OnInit {
     ngOnInit(): void {
         this.city = this.activatedRoute.snapshot.queryParams['city']
         this.weather$ = this.weatherService.getWeather(this.city)
+        this.title.setTitle(this.city + 'weather')
     }
 
     displayMetric() {
@@ -26,14 +29,7 @@ export class WeatherComponent implements OnInit {
     }
 
     displaySI() {
-        this.weather$ = this.weatherService.getWeather(this.city).pipe(
-            map(data => {
-                data.main.temp = Math.round((data.main.temp + 273)*10)/10
-                data.main.temp_max = Math.round((data.main.temp_max + 273)*10)/10
-                data.main.temp_min = Math.round((data.main.temp_min + 273)*10)/10
-                return data
-            })
-        )
+        this.weather$ = this.weatherService.getWeather(this.city, 'standard')
     }
 
 }

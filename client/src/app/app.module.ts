@@ -11,7 +11,7 @@ import { MainComponent } from './main/main.component';
 
 const routes: Routes = [
     { path: '', component: MainComponent, title: 'Main' },
-    { path: 'weather', component: WeatherComponent, title: 'Weather' },
+    { path: 'weather:city', component: WeatherComponent, },
     { path: '**', redirectTo: '/', pathMatch: 'full' },
 ]
 

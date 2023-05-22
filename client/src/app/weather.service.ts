@@ -8,8 +8,8 @@ export class WeatherService {
 
     http = inject(HttpClient)
     
-    getWeather(city: string): Observable<WeatherApiResponse> {
-        const params = new HttpParams().set('city', city)
+    getWeather(city: string, units = 'metric'): Observable<WeatherApiResponse> {
+        const params = new HttpParams().set('city', city).set('units', units)
         return this.http.get<WeatherApiResponse>('/api/weather', {params})
     }
 }
