@@ -1,0 +1,11 @@
+<body style="margin: 1rem;">
+    <h1>Get Weather</h1>
+    <div>
+        <form [formGroup]="form" (submit)="getWeather()">
+            <input type="text" size="30" formControlName="city">
+            &nbsp;
+            <button type="submit" [disabled]="form.invalid">GET</button>
+        </form>
+        <br>
+    </div>
+</body>

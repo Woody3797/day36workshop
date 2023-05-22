@@ -1,0 +1,45 @@
+<body style="margin: 1rem;">
+    <h1>Displaying Weather</h1>
+    <div>
+        <div *ngIf="weather$ | async as w;">
+            <span style="margin: auto;">
+                <img src="https://openweathermap.org/img/wn/{{ w.weather[0].icon }}@2x.png">
+            </span>
+            <span style="text-align: left;">
+                <div>
+                    <span>
+                        Current temperature:
+                        <br>
+                        {{ w.main.temp }} °C
+                        <br>
+                        Max temperature: 
+                        <br>
+                        {{ w.main.temp_max }} °C
+                        <br>
+                        Min temperature: 
+                        <br>
+                        {{ w.main.temp_min }} °C
+                    </span>
+                    <br>
+                    <span>
+                        Weather conditions: {{ w.weather[0].description }}
+                    </span>
+                    <br>
+                    <span>
+                        Humidity: {{ w.main.humidity }}%
+                    </span>
+                </div>
+            </span>
+        </div>
+        <div>
+            <button (click)="displayMetric()">Metric</button>
+            &nbsp;
+            <button (click)="displaySI()">SI</button>
+        </div>
+        <br>
+        <div>
+            <button [routerLink]="['/']">Back</button>
+        </div>
+    </div>
+</body>
+
