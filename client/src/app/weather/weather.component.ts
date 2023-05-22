@@ -19,17 +19,11 @@ export class WeatherComponent implements OnInit {
     city = ''
 
     ngOnInit(): void {
-        this.city = this.activatedRoute.snapshot.queryParams['city']
-        this.weather$ = this.weatherService.getWeather(this.city)
+        this.city = this.activatedRoute.snapshot.params['city']
+        const units = this.activatedRoute.snapshot.queryParams['units'] || 'metric'
         this.title.setTitle(this.city + 'weather')
+        this.weather$ = this.weatherService.getWeather(this.city, units)
     }
 
-    displayMetric() {
-        this.weather$ = this.weatherService.getWeather(this.city)
-    }
-
-    displaySI() {
-        this.weather$ = this.weatherService.getWeather(this.city, 'standard')
-    }
 
 }

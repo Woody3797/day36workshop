@@ -15,15 +15,16 @@ export class MainComponent implements OnInit {
 
     ngOnInit(): void {
         this.form = this.fb.group({
-            city: this.fb.control('Singapore', [Validators.required])
+            city: this.fb.control('Singapore', [Validators.required]),
+            units: this.fb.control('metric', [Validators.required])
         })
     }
 
     getWeather() {
         console.info(this.form.value)
         const query = this.form.value
-        const queryParams: Params = { city: this.form.value['city'] }
-        this.router.navigate([ '/weather', query.city ], { queryParams })
+        const queryParams: Params = { units: query.units }
+        this.router.navigate([ '/weather', query.city ], { queryParams: queryParams })
     }
 
 

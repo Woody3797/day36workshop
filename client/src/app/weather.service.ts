@@ -3,6 +3,8 @@ import { Injectable, inject } from "@angular/core";
 import { Observable } from "rxjs";
 import { WeatherApiResponse } from "./model";
 
+const URL = '/api/weather'
+
 @Injectable()
 export class WeatherService {
 
@@ -10,6 +12,6 @@ export class WeatherService {
     
     getWeather(city: string, units = 'metric'): Observable<WeatherApiResponse> {
         const params = new HttpParams().set('city', city).set('units', units)
-        return this.http.get<WeatherApiResponse>('/api/weather', {params})
+        return this.http.get<WeatherApiResponse>(URL, {params})
     }
 }

@@ -24,9 +24,9 @@ public class WeatherController {
 
     @GetMapping(path = "/weather", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ResponseEntity<String> getWeather(@RequestParam String city) {
+    public ResponseEntity<String> getWeather(@RequestParam String city, @RequestParam String units) {
         try {
-            String weatherURL = UriComponentsBuilder.fromUriString(API_URL).queryParam("q", city.replaceAll(" ", "+")).queryParam("units", "metric").queryParam("appid", appId).toUriString();
+            String weatherURL = UriComponentsBuilder.fromUriString(API_URL).queryParam("q", city.replaceAll(" ", "+")).queryParam("units", units).queryParam("appid", appId).toUriString();
             RestTemplate template = new RestTemplate();
             ResponseEntity<String> resp = template.getForEntity(weatherURL, String.class);
             return resp;

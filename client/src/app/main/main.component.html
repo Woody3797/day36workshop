@@ -3,7 +3,15 @@
     <div>
         <form [formGroup]="form" (submit)="getWeather()">
             <input type="text" size="30" formControlName="city">
-            &nbsp;
+            <br>
+            <span>Metric</span>
+            <input type="radio" value="metric" formControlName="units">
+            <span>Standard</span>
+            <input type="radio" value="standard" formControlName="units">
+            <span>Imperial</span>
+            <input type="radio" value="imperial" formControlName="units">
+            <br>
+            <br>
             <button type="submit" [disabled]="form.invalid">GET</button>
         </form>
         <br>
