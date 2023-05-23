@@ -21,6 +21,7 @@ public class WeatherService {
         RequestEntity<Void> req = RequestEntity.get(weatherURL).build();
         try {
             ResponseEntity<String> resp = template.exchange(req, String.class);
+            System.out.println(resp);
         } catch (Exception e) {
             // TODO: handle exception
         }
