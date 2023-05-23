@@ -25,7 +25,7 @@ const routes: Routes = [
     BrowserModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes, { useHash: true})
   ],
   providers: [ WeatherService ],
   bootstrap: [AppComponent]
