@@ -15,15 +15,16 @@ public class WeatherService {
     @Value("${openweathermap.key}")
     private String appId;
 
-    public void getWeather(String city) {
+    public ResponseEntity<String> getWeather(String city) {
         String weatherURL = UriComponentsBuilder.fromUriString(API_URL).queryParam("q", city.replaceAll(" ", "+")).queryParam("units", "metric").queryParam("appId", appId).toUriString();
         RestTemplate template = new RestTemplate();
         RequestEntity<Void> req = RequestEntity.get(weatherURL).build();
         try {
             ResponseEntity<String> resp = template.exchange(req, String.class);
+            return resp;
         } catch (Exception e) {
             // TODO: handle exception
         }
-
+        return null;
     }
 }
